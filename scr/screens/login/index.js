@@ -1,13 +1,14 @@
 import React, {useState, useReducer, useEffect} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { View, Text, Image, TextInput, TouchableOpacity, Alert, TouchableWithoutFeedback, Keyboard } from "react-native";
-import CustomHead from "../../components/customHead";
+import { ModalCustom, CustomHead } from "../../components";
 import { styles } from "./styles";
 import { signIn } from "../../store/actions";
 import { UPDATED_FORM, onFocusOut, onInputChange } from "../../utils";
 import { LoadLenguageAct} from "../../store/actions";
 import { Lenguage } from "../../constants/lenguage";
 import { LoadImageProfile } from "../../store/actions";
+
 
 const initialState = {
   email: { value: '', error: '', touched: false, hasError: true },
@@ -44,20 +45,19 @@ const Login = ({navigation}) =>{
     dispatch(LoadLenguageAct())
   },[])
 
-
   const lenguageSelect = useSelector((state)=> state.LenguageReducer.Lenguage);
   const filter = Lenguage.filter((item) => item.id === lenguageSelect) ;
   const mapping = filter.map((item)=> item.valor);
   const msg = mapping[0];
 
-
+  const [isModalOn, setIsModalOn] = useState(false);
   
   const dispatch = useDispatch();
   const [formState, dispatchFormState] = useReducer(formReducer, initialState);
 
   const onHandleIniciarSesion = () =>{
     const { password, email } = formState;
-    dispatch(signIn(email.value ,password.value ));
+    dispatch(signIn(email.value ,password.value, isModalOn, setIsModalOn ));
   };
 
   const onHandleInput = (value, type) => {
@@ -130,6 +130,7 @@ const Login = ({navigation}) =>{
             <Text style={styles.textOlvideContraseña}>{msg.msgOlvidePass}</Text>
           </TouchableOpacity>
       </View>
+      <ModalCustom isModalOn={isModalOn} setIsModalOn={setIsModalOn} mensaje={msg.msgCorreoIncorrecto}/>
     </View>
     </TouchableWithoutFeedback>
   )

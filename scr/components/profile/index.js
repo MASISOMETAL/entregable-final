@@ -8,9 +8,9 @@ import { Lenguage } from "../../constants/lenguage";
 
 const ProfileComponent = ({nombre, range}) =>{
 
-    useEffect(()=>{
+    /*useEffect(()=>{
         dispatch(LoadImageProfile())
-    },[dispatch])
+    },[dispatch])*/
 
     const userId = useSelector((state)=> state.auth.userId)
     const profileImage = useSelector((state) => state.imgProfile.image)

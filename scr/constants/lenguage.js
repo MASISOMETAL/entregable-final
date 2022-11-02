@@ -43,6 +43,12 @@ export const Lenguage =[
             //Tab Navigation
             msgInicio: "Inicio",
             msgConfig: "Configuración",
+            //modal y msg error
+            msgError: "Mensaje del sistema",
+            msgCorreoIncorrecto: "El correo o la contraseña son incorrectos",
+            msgSinPermisosAdmin: "Necesitas permisos de admin",
+            msgCamposSinComplete: "Complete todos los campos",
+            msgDatosEnviados: "Los datos se han enviado correctamente",
         },
     },
     {
@@ -89,6 +95,12 @@ export const Lenguage =[
             //Tab Navigation
             msgInicio: "Home",
             msgConfig: "Settings",
+            //modal y msg error
+            msgError: "system message",
+            msgCorreoIncorrecto: "The email or password is incorrect",
+            msgSinPermisosAdmin: "You need admin permissions",
+            msgCamposSinComplete: "Fill in all the fields",
+            msgDatosEnviados: "The data has been sent correctly",
         },
     }
 ]

@@ -51,7 +51,7 @@ export const signUp = (email, password, userName) => {
     }
 };
 
-export const signIn = (email, password) => {
+export const signIn = (email, password, isModalOn, setIsModalOn) => {
     return async (dispatch) => {
         try {
             const response = await fetch(URL_AUTH_SIGN_IN, {
@@ -70,7 +70,7 @@ export const signIn = (email, password) => {
 
             
             if (!data.error) {
-            }else Alert.alert("El mail o la contraseña son erroneos")
+            }else { setIsModalOn(!isModalOn)}
             
 
             const response2 = await fetch(`${URL_API}/registerDatos.json`, {

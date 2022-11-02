@@ -1,10 +1,11 @@
 import React, {useState} from "react";
 import { View, Text, TouchableOpacity, TextInput, ScrollView, TouchableWithoutFeedback, Keyboard, Alert } from "react-native";
-import { PickerProduct } from "../../components";
+import { ModalCustom, PickerProduct } from "../../components";
 import { styles } from "./styles";
 import { useDispatch, useSelector } from "react-redux";
 import { insertSells } from "../../store/actions";
 import { Lenguage } from "../../constants/lenguage";
+
 
 const SelectOptions = () =>{
 
@@ -23,14 +24,18 @@ const SelectOptions = () =>{
         const msg = mapping[0];
 
     const [textInputFocus, setTextInputFocus] = useState(0)
+    const [isModalOn, setIsModalOn] = useState(false);
+    const [mensage, setMensage] = useState("");
 
     const onHandleSubmit = () =>{
         if (!inputs.nombreVendedor || !inputs.nombreCliente || !inputs.fechaDeNacimiento || !inputs.DNI || !inputs.calle || !inputs.numeroCel || !inputs.producto ) {
-            Alert.alert("Complete todos los campos")
+            setMensage(msg.msgCamposSinComplete);
+            setIsModalOn(!isModalOn)
         } else {
             dispatch(insertSells(userId, inputs))
             setInputs({});
-            Alert.alert("Los datos han sido enviado correctamente")
+            setMensage(msg.msgDatosEnviados);
+            setIsModalOn(!isModalOn)
         }
         
     };
@@ -156,6 +161,7 @@ const SelectOptions = () =>{
                         </TouchableOpacity>
                     </View>
             </ScrollView>
+            <ModalCustom isModalOn={isModalOn} setIsModalOn={setIsModalOn} mensaje={mensage}/>
         </View>
         </TouchableWithoutFeedback>
     )
