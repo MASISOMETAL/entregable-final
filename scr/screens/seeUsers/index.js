@@ -18,7 +18,6 @@ const SeeUsers = () =>{
         dispatch(getUserAction())
     },[dispatch])
 
-    console.log("seeusers:  ", infoUser)
     const RenderItem = ({item}) => (
         <RenderItemUsers item={item} /> 
     )

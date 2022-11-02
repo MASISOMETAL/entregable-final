@@ -5,7 +5,9 @@ import CustomHead from "../../components/customHead";
 import { styles } from "./styles";
 import { signIn } from "../../store/actions";
 import { UPDATED_FORM, onFocusOut, onInputChange } from "../../utils";
-import { LoadLenguageAct } from "../../store/actions";
+import { LoadLenguageAct} from "../../store/actions";
+import { Lenguage } from "../../constants/lenguage";
+import { LoadImageProfile } from "../../store/actions";
 
 const initialState = {
   email: { value: '', error: '', touched: false, hasError: true },
@@ -38,8 +40,17 @@ const formReducer = (state, action) => {
 const Login = ({navigation}) =>{
 
   useEffect(()=>{
+    dispatch(LoadImageProfile())
     dispatch(LoadLenguageAct())
-  },[dispatch])
+  },[])
+
+
+  const lenguageSelect = useSelector((state)=> state.LenguageReducer.Lenguage);
+  const filter = Lenguage.filter((item) => item.id === lenguageSelect) ;
+  const mapping = filter.map((item)=> item.valor);
+  const msg = mapping[0];
+
+
   
   const dispatch = useDispatch();
   const [formState, dispatchFormState] = useReducer(formReducer, initialState);
@@ -71,7 +82,7 @@ const Login = ({navigation}) =>{
           <TextInput 
             style={styles.input}
             label="Email"
-            placeholder="Ingrese su correo"
+            placeholder={msg.msgIngreseCorreo}
             value={formState.email.value}
             placeholderTextColor={"#00aae4"}
             keyboardType="email-address"
@@ -88,7 +99,7 @@ const Login = ({navigation}) =>{
             label="Password"
             placeholderTextColor={"#00aae4"}
             value={formState.password.value}
-            placeholder="Ingrese su contraseña"
+            placeholder={msg.msgIngresePass}
             //secureTextEntry={true}
             autoCapitalize="none"
             autoCorrect={false}
@@ -104,19 +115,19 @@ const Login = ({navigation}) =>{
             style={styles.botonSesion}
             onPress={onHandleIniciarSesion}
             >
-            <Text style={styles.textBotonSesion}>Iniciar Sesión</Text>
+            <Text style={styles.textBotonSesion}>{msg.msgInicioSesion}</Text>
           </TouchableOpacity>
           <TouchableOpacity 
             style={styles.botonRegister}
             onPress={() => navigation.navigate("Register")}
             >
-            <Text style={styles.textBotonRegister}>Registrarse</Text>
+            <Text style={styles.textBotonRegister}>{msg.msgRegistrate}</Text>
           </TouchableOpacity>
           <TouchableOpacity 
             style={styles.botonOlvideContraseña}
             onPress={() => alert("Jodete por gil")}
             >
-            <Text style={styles.textOlvideContraseña}>Olvide mi contraseña</Text>
+            <Text style={styles.textOlvideContraseña}>{msg.msgOlvidePass}</Text>
           </TouchableOpacity>
       </View>
     </View>

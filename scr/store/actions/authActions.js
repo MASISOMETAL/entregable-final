@@ -71,7 +71,6 @@ export const signIn = (email, password) => {
             
             if (!data.error) {
             }else Alert.alert("El mail o la contraseña son erroneos")
-            //console.warn('data', data.error);
             
 
             const response2 = await fetch(`${URL_API}/registerDatos.json`, {

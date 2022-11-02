@@ -5,13 +5,20 @@ import { Inicio, SelectOptions, Sells, SeeUsers } from "../screens";
 import { Colors } from "../constants/colors";
 import { styles } from "./styles";
 import { LogOut } from "../store/actions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { Lenguage } from "../constants/lenguage";
 
 const Stack = createNativeStackNavigator();
 
 const InicioNav = () =>{
 
     const dispatch = useDispatch();
+
+    //funcion lenguage
+    const lenguageSelect = useSelector((state)=> state.LenguageReducer.Lenguage);
+    const filter = Lenguage.filter((item) => item.id === lenguageSelect) ;
+    const mapping = filter.map((item)=> item.valor);
+    const msg = mapping[0];
 
     const onLogOut = () =>{
       dispatch(LogOut("", null, "", ""));
@@ -30,7 +37,7 @@ const InicioNav = () =>{
                     headerTintColor: Colors.white,
                     headerRight: () => (
                         <TouchableOpacity onPress={onLogOut}>
-                            <Text style={styles.textBoton}>Logout</Text>
+                            <Text style={styles.textBoton}>{msg.msgCerrarSesion}</Text>
                         </TouchableOpacity>
                     )
                 }}
@@ -46,7 +53,7 @@ const InicioNav = () =>{
                     headerTintColor: Colors.white,
                     headerRight: () => (
                         <TouchableOpacity onPress={onLogOut}>
-                            <Text style={styles.textBoton}>Logout</Text>
+                            <Text style={styles.textBoton}>{msg.msgCerrarSesion}</Text>
                         </TouchableOpacity>
                     )
                 }}
@@ -62,7 +69,7 @@ const InicioNav = () =>{
                     headerTintColor: Colors.white,
                     headerRight: () => (
                         <TouchableOpacity onPress={onLogOut}>
-                            <Text style={styles.textBoton}>Logout</Text>
+                            <Text style={styles.textBoton}>{msg.msgCerrarSesion}</Text>
                         </TouchableOpacity>
                     )
                 }}
@@ -78,7 +85,7 @@ const InicioNav = () =>{
                     headerTintColor: Colors.white,
                     headerRight: () => (
                         <TouchableOpacity onPress={onLogOut}>
-                            <Text style={styles.textBoton}>Logout</Text>
+                            <Text style={styles.textBoton}>{msg.msgCerrarSesion}</Text>
                         </TouchableOpacity>
                     )
                 }}

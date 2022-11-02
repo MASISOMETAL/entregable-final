@@ -6,5 +6,6 @@ const { height, width} = Dimensions.get("window");
 export const styles = StyleSheet.create({
     textBoton:{
         color: Colors.white,
+        fontFamily: "Inter-Bold",
     },
 })

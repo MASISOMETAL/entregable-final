@@ -19,7 +19,7 @@ export const init = () => {
     const promise2 = new Promise((resolve, reject) => {
       db.transaction((tx) => {
         tx.executeSql(
-          "CREATE TABLE IF NOT EXISTS profile (id INTEGER PRIMARY KEY NOT NULL, profileimg TEXT NOT NULL);",
+          "CREATE TABLE IF NOT EXISTS profile (id INTEGER PRIMARY KEY NOT NULL, image TEXT NOT NULL);",
           [],
           () => resolve(),
           (_, err) => reject(err)
@@ -51,6 +51,36 @@ export const LoadSelectLenguageDB = () => {
       db.transaction((tx) => {
         tx.executeSql(
           "SELECT * FROM lenguage",
+          [],
+          (_, result) => resolve(result),
+          (_, err) => reject(err)
+        );
+      });
+    });
+  
+    return promise;
+  };
+
+  export const selectProfileDB = (image) => {
+    const promise = new Promise((resolve, reject) => {
+      db.transaction((tx) => {
+        tx.executeSql(
+          "INSERT INTO profile (image) VALUES (?);",
+          [image],
+          (_, result) => resolve(result),
+          (_, err) => reject(err)
+        );
+      });
+    });
+
+    return promise;
+};
+
+export const LoadProfileDB = () => {
+    const promise = new Promise((resolve, reject) => {
+      db.transaction((tx) => {
+        tx.executeSql(
+          "SELECT * FROM profile",
           [],
           (_, result) => resolve(result),
           (_, err) => reject(err)

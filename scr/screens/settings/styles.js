@@ -36,19 +36,31 @@ export const styles = StyleSheet.create({
     },
     buttonSpanish:{
         backgroundColor: Colors.primary,
-        padding: 3,
-    },
-    buttonSpanish1:{
-        backgroundColor: Colors.grey,
-        padding: 3,
+        //padding: 3,
+        width: width * 0.2,
+        height: height * 0.03,
+        justifyContent: "center",
+        alignItems: "center",
     },
     buttonEnglish:{
         backgroundColor: Colors.primary,
-        padding: 3,
+        width: width * 0.2,
+        height: height * 0.03,
+        justifyContent: "center",
+        alignItems: "center",
     },
-    buttonEnglish1:{
-        backgroundColor: Colors.grey,
-        padding: 3,
+    buttonModoOn:{
+        backgroundColor: Colors.primary,
+        width: width * 0.2,
+        height: height * 0.03,
+        justifyContent: "center",
+        alignItems: "center",
     },
-    
+    buttonModoOff:{
+        backgroundColor: Colors.primary,
+        width: width * 0.2,
+        height: height * 0.03,
+        justifyContent: "center",
+        alignItems: "center",
+    },
 })

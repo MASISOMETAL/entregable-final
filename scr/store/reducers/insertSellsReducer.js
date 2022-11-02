@@ -16,7 +16,6 @@ const InsertSellsReducor = (state = initialState, action) =>{
                     producto: action.producto, observaciones: action.observaciones}]
             }
         case GET_SELLS:
-            console.log("reducer", action.info)
             return{
                 info: action.info,
             }

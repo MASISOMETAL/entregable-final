@@ -10,15 +10,12 @@ const ImageProfileReducer = (state = initialState, action) =>{
     switch (action.type) {
         case CHANGE_IMAGE:
             return{
-               image : action.image 
+               image : action.image
             };
         case LOAD_IMGPROFILE:
-            console.log("in Reducer:   ",action.image)
-            if (action.image === null) {
-                return state
-            }else {return{
-                image : action.imagen
-             }}
+            return{
+                image : action.image
+            };
         default:
             return state
     }

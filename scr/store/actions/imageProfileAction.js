@@ -1,28 +1,19 @@
 import { ImageProfiles } from "../types";
-import { URL_API } from "../../constants/firebase";
+import { selectProfileDB, LoadProfileDB } from "../../db";
 
 
 const { CHANGE_IMAGE, LOAD_IMGPROFILE } = ImageProfiles
 
-export const SaveImageProfile = ({pickUrl})  =>({
+export const SaveImageProfile = (pickUrl)  =>({
     type: CHANGE_IMAGE,
     image: pickUrl,
 });
 
-export const ImageProfileSave = (pickUrl, userId) => {
+export const ImageProfileSave = (pickUrl) => {
     return async (dispatch) => {
       try {
-        const response = await fetch(`${URL_API}/registerPhoto.json`, {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-              id: userId,
-              image: pickUrl
-          })
-      })
-        dispatch(SaveImageProfile({pickUrl}));
+        const result = await selectProfileDB(pickUrl);
+        dispatch(SaveImageProfile(pickUrl));
       } catch (err) {
         console.log(err);
         throw err;
@@ -30,33 +21,25 @@ export const ImageProfileSave = (pickUrl, userId) => {
     };
   };
 
-  export const LoadimageProfile = (pickUrl) =>({
+  export const LoadimageProfile = (image) =>({
     type: LOAD_IMGPROFILE,
-    image: pickUrl,
+    image: image,
 });
 
-  export const LoadImageProfile = (userId) => {
+  export const LoadImageProfile = () => {
     return async (dispatch) => {
       try {
-        const response = await fetch(`${URL_API}/registerPhoto.json`, {
-          method: "get",
-          headers: {
-              "Content-Type": "application/json"
-          },
-      });
+        const result = await LoadProfileDB();
 
-      const dataGet = await response.json();
+        const array = result?.rows?._array;
+        const mapping = array.map((item) => item.image);
+        const image = mapping[mapping?.length-1];
 
+        image == null ? image = "https://i.ibb.co/qjWS478/perfil-empty.png" : image;
 
-      const mapName = Object.keys(dataGet).map( key => dataGet[key] );
-      const filterName = mapName.filter(item => item.id === userId )
-      const imagen = filterName.map(item => item.image);
-
-      console.log("In Action:   ", imagen[1])
-
-        dispatch(LoadimageProfile(imagen[1]));
+        dispatch(LoadimageProfile(image));
       } catch (err) {
-        throw err;
+        //throw err;
       }
     };
   };

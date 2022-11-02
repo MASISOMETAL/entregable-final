@@ -5,7 +5,7 @@ import CustomHead from "../../components/customHead";
 import { styles } from "./styles";
 import { signUp } from "../../store/actions";
 import { UPDATED_FORM, onFocusOut, onInputChange } from "../../utils";
-
+import { Lenguage } from "../../constants/lenguage";
 
 const initialState = {
   email: { value: "", error: "", touched: false, hasError: true },
@@ -41,6 +41,12 @@ const Register = ({navigation}) =>{
   const [registerDate, setRegisterDate] = useState("");
   const [repit, setRepit] = useState("");
 
+      //funcion lenguage
+      const lenguageSelect = useSelector((state)=> state.LenguageReducer.Lenguage);
+      const filter = Lenguage.filter((item) => item.id === lenguageSelect) ;
+      const mapping = filter.map((item)=> item.valor);
+      const msg = mapping[0];
+
   const Registrar = () =>{
     const { password, email } = formState;
     dispatch(signUp(email.value ,password.value, registerDate ));
@@ -70,7 +76,7 @@ const Register = ({navigation}) =>{
       <TextInput 
             style={styles.input}
             //label="Email"
-            placeholder="Ingrese su correo"
+            placeholder={msg.msgIngreseCorreo}
             value={formState.email.value}
             placeholderTextColor={"#00aae4"}
             keyboardType="email-address"
@@ -90,7 +96,7 @@ const Register = ({navigation}) =>{
             //label="Password"
             placeholderTextColor={"#00aae4"}
             value={formState.password.value}
-            placeholder="Ingrese su contraseña"
+            placeholder={msg.msgIngresePass}
             //secureTextEntry={true}
             autoCapitalize="none"
             autoCorrect={false}
@@ -107,7 +113,7 @@ const Register = ({navigation}) =>{
             style={styles.input}
             placeholderTextColor={"#00aae4"}
             value={formState.repitPass.value}
-            placeholder="Repita la contraseña"
+            placeholder={msg.msgRepitPass}
             autoCapitalize="none"
             autoCorrect={false}
             onChangeText={(text) => onHandleInput(text, "repitPass")}
@@ -121,7 +127,7 @@ const Register = ({navigation}) =>{
             )}
           <TextInput
             style={styles.input}
-            placeholder="Ingrese nombre de usuario"
+            placeholder={msg.msgIngreseNombreUser}
             placeholderTextColor={"#00aae4"}
             onChangeText={(text) => setRegisterDate(text)}
             value={registerDate}
@@ -132,7 +138,7 @@ const Register = ({navigation}) =>{
             style={styles.botonRegister}
             onPress={Registrar}
             >
-            <Text style={styles.textBotonRegister}>Register</Text>
+            <Text style={styles.textBotonRegister}>{msg.msgRegistrate}</Text>
           </TouchableOpacity>
       </View>
     </View>

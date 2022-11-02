@@ -7,13 +7,19 @@ import { styles } from "./styles";
 import { LogOutBoton } from "../utils";
 import { useDispatch, useSelector } from "react-redux";
 import { LogOut } from "../store/actions";
+import { Lenguage } from "../constants/lenguage";
 
 const Stack = createNativeStackNavigator();
 
 const SettingsNav = () =>{
 
     const dispatch = useDispatch();
-    const lenguageSelect = useSelector((state)=> state.LenguageReducer.Lenguage)
+    
+       //funcion lenguage
+       const lenguageSelect = useSelector((state)=> state.LenguageReducer.Lenguage);
+       const filter = Lenguage.filter((item) => item.id === lenguageSelect) ;
+       const mapping = filter.map((item)=> item.valor);
+       const msg = mapping[0];
 
     const onLogOut = () =>{
       dispatch(LogOut("", null, "", ""));
@@ -32,7 +38,7 @@ const SettingsNav = () =>{
                 headerTintColor: Colors.white,
                 headerRight: () => (
                     <TouchableOpacity onPress={onLogOut}>
-                        <Text style={styles.textBoton}>Logout</Text>
+                        <Text style={styles.textBoton}>{msg.msgCerrarSesion}</Text>
                     </TouchableOpacity>
                 )
             }}

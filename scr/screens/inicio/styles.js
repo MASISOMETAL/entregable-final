@@ -7,6 +7,10 @@ export const styles = StyleSheet.create({
     container:{
         flex: 1,
     },
+    containerdark:{
+        flex: 1,
+        backgroundColor: Colors.black,
+    },
     containerDecoration:{
         width: width,
         height: height *0.04,

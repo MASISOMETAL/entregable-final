@@ -28,10 +28,10 @@ export const SelectLenguageAct = (item) => {
         const array = result?.rows?._array;
         const mapping = array.map((item) => item.selectLenguage);
         const Lenguage = mapping[mapping?.length-1];
-
+        Lenguage == null ? Lenguage = "ES" : Lenguage;
         dispatch(SelectedLenguage(Lenguage));
       } catch (err) {
-        throw err;
+          //throw err;
       }
     };
   };

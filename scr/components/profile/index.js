@@ -4,21 +4,28 @@ import { View, Text, TouchableOpacity, Image } from "react-native";
 import { styles } from "./styles";
 import { useDispatch, useSelector } from "react-redux";
 import { LoadImageProfile, ImageProfileSave } from "../../store/actions";
-
+import { Lenguage } from "../../constants/lenguage";
 
 const ProfileComponent = ({nombre, range}) =>{
 
+    useEffect(()=>{
+        dispatch(LoadImageProfile())
+    },[dispatch])
+
     const userId = useSelector((state)=> state.auth.userId)
     const profileImage = useSelector((state) => state.imgProfile.image)
-    const lenguageSelect = useSelector((state)=> state.LenguageReducer.Lenguage)
     const [pickUrl, setPickUrl] = useState();
     const dispatch = useDispatch();
 
-    const Range = lenguageSelect === "ES" ? "Rango: " : "Range: "
+        //funcion lenguage
+        const lenguageSelect = useSelector((state)=> state.LenguageReducer.Lenguage);
+        const filter = Lenguage.filter((item) => item.id === lenguageSelect) ;
+        const mapping = filter.map((item)=> item.valor);
+        const msg = mapping[0];
 
-    /*useEffect(()=>{
-        dispatch(LoadImageProfile(userId))
-    },[dispatch])*/
+
+
+
 
     const verifyPermissions = async () =>{
         const { status } = await ImagePicker.requestCameraPermissionsAsync();
@@ -42,7 +49,7 @@ const ProfileComponent = ({nombre, range}) =>{
           quality: 0.5,
         });
         setPickUrl(image.uri);
-        dispatch(ImageProfileSave(image.uri, userId));
+        dispatch(ImageProfileSave(image.uri));
     };
 
 
@@ -54,7 +61,7 @@ const ProfileComponent = ({nombre, range}) =>{
                 </TouchableOpacity>
                 <View style={styles.containerTextInfo}>
                     <Text style={styles.textName}>{nombre}</Text> 
-                    <Text style={styles.textRange}>{Range} {range}</Text> 
+                    <Text style={styles.textRange}>{msg.msgRange} {range}</Text> 
                 </View>
             </View>
         </View>

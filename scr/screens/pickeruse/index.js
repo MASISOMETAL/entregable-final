@@ -6,7 +6,6 @@ import { styles } from "./styles";
 const Test = () =>{
 
     const info = useSelector((state)=> state.insertSellReducer.info)
-    console.log(info)
 
     const RenderItem = ({item}) =>{
         <View style={styles.container}>

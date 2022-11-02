@@ -8,8 +8,7 @@ const initialState = {
 
 const SelectLenguageReducer = (state = initialState, action) =>{
     switch (action.type) {
-        case SELECT_LENGUAGE:
-            console.log(state.Lenguage)
+        case SELECT_LENGUAGE: 
             return {
                 Lenguage: action.Lenguage
             }
