@@ -1,6 +1,6 @@
 import { GetUsersTypes } from "../types";
 
-const {GET_USERS} = GetUsersTypes
+const {GET_USERS, GIVE_ADMIN} = GetUsersTypes
 
 const initialState = {
     allUsers: [],
@@ -9,9 +9,8 @@ const initialState = {
 const GetUsersReducers = (state = initialState, action) =>{
     switch (action.type) {
         case GET_USERS:
-            //console.log("Reducer:  ", action.users)
             return{
-                allUsers: action.users
+                allUsers: action.users,
             }
         default:
             return state 

@@ -49,6 +49,9 @@ export const Lenguage =[
             msgSinPermisosAdmin: "Necesitas permisos de admin",
             msgCamposSinComplete: "Complete todos los campos",
             msgDatosEnviados: "Los datos se han enviado correctamente",
+            //Dar Admin
+            msgDarAdmin: "Quieres darle admin a ",
+            msgQuitarAdmin: "Quieres quitarle el admin a ",
         },
     },
     {
@@ -101,6 +104,9 @@ export const Lenguage =[
             msgSinPermisosAdmin: "You need admin permissions",
             msgCamposSinComplete: "Fill in all the fields",
             msgDatosEnviados: "The data has been sent correctly",
+            //Dar Admin
+            msgDarAdmin: "Do you want to give admin to ",
+            msgQuitarAdmin: "You want to remove the admin from ",
         },
     }
 ]

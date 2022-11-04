@@ -9,7 +9,6 @@ const initialState = {
 const InsertSellsReducor = (state = initialState, action) =>{
     switch (action.type) {
         case INSERT_SELLS:
-            //console.log(action.nombreVendedor)
             return{
                 info: [...state.info,{nombreVendedor: action.nombreVendedor, nombreCliente: action.nombreCliente,
                     fechaDeNacimiento: action.fechaDeNacimiento, DNI: action.DNI, calle: action.calle, numeroCel: action.numeroCel,

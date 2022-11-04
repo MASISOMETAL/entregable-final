@@ -18,6 +18,10 @@ const SeeUsers = () =>{
         dispatch(getUserAction())
     },[dispatch])
 
+    useEffect(()=>{
+        dispatch(getUserAction())
+    },[infoUser])
+
     const RenderItem = ({item}) => (
         <RenderItemUsers item={item} /> 
     )

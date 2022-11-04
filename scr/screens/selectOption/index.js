@@ -40,8 +40,6 @@ const SelectOptions = () =>{
         
     };
 
-    console.log(textInputFocus)
-
     return(
         <TouchableWithoutFeedback style={styles.container} onPress={() => Keyboard.dismiss()}>
         <View style={styles.container}>
