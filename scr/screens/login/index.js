@@ -100,7 +100,7 @@ const Login = ({navigation}) =>{
             placeholderTextColor={"#00aae4"}
             value={formState.password.value}
             placeholder={msg.msgIngresePass}
-            //secureTextEntry={true}
+            secureTextEntry={true}
             autoCapitalize="none"
             autoCorrect={false}
             onChangeText={(text) => onHandleInput(text, "password")}
