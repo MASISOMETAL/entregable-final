@@ -1,6 +1,6 @@
-###  App Control de Ventas Movistar
+##  App Control de Ventas Movistar
 
-##### Dependencias
+### Dependencias
 
 | React Native | Expo |
 | --------------------------- | ----------------- |
@@ -11,7 +11,7 @@
 | redux | expo-font |
 | redux-thunk |
 
-#### Pantallas y Funcionabilidades
+### Pantallas y Funcionabilidades
 
 - Login (Pantalla para logearse y crear cuenta)
 - Register (Pantalla para crear cuenta)
