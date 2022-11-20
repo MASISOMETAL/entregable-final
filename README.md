@@ -2,14 +2,14 @@
 
 ##### Dependencias
 
-| React Native || Expo |
-| ------------- || ------------- |
-| react-native-picker/picker  || expo-sqlite  |
-| react-navigation/bottom-tabs  || expo-image-picker  |
-| react-navigation/native-stack  || expo-file-system  |
-| react-redux  || expo-permissions  |
-| redux  || expo-font  |
-| redux-thunk  |
+| React Native | Expo |
+| --------------------------- | ----------------- |
+| react-native-picker/picker | expo-sqlite |
+| react-navigation/bottom-tabs | expo-image-picker |
+| react-navigation/native-stack | expo-file-system |
+| react-redux | expo-permissions |
+| redux | expo-font |
+| redux-thunk |
 
 #### Pantallas y Funcionabilidades
 
